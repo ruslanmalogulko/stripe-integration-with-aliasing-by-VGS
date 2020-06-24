@@ -1,5 +1,7 @@
 # Simple integration of VGS CollectJS with Stripe payment system
 
+![Alt text](title.png?raw=true "Title")
+
 ## Local run
 
 ```
