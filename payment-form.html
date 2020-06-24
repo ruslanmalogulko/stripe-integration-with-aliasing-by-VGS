@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Integration</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h4 {
+        padding: 20px 0;
+        font-size: 20px;
+      }
+      #form {
+        height: calc(100vh - 50px);
+        width: 500px;
+        background: lightblue;
+        padding: 0 40px;
+      }
+      #token-reveal {
+        padding: 10px 10px 10px 40px;
+        background-color: gray;
+        color: white;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      iframe {
+        height: 40px;
+      }
+      label {
+        display: block;
+      }
+      input {
+        height: 20px;
+        width: 500px;
+        margin-top: 10px;
+      }
+      .half {
+        width: 200px;
+      }
+      .half + .half {
+        margin-left: 10px;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 2px 10px;
+        border: 2px solid gray;
+        border-radius: 3px;
+        font-size: 16px;
+      }
+      button + button {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <form id="form" name="card-data">
+        <h4>Simple integration with CollectJS & Stripe</h4>
+        <div class="section">
+          <label for="number">
+            Card Number
+          </label>
+          <div id="number"></div>
+        </div>
+        <div class="section">
+          <label for="cvc">
+            CVC
+          </label>
+          <div id="cvc"></div>
+        </div>
+        <div class="section">
+          <label>
+            Expiration Date
+          </label>
+          <div id="exp_date"></div>
+        </div>
+        <div id="card-errors"></div>
+        <button id="submit-button" type="submit">Collect data</button>
+        <button id="send-to-stripe" disabled="disabled" type="button">
+          Send to Stripe!
+        </button>
+        <pre id="token-reveal"></pre>
+      </form>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script
+        type="text/javascript"
+        src="https://js.verygoodvault.com/vgs-collect/2.0/vgs-collect.js"
+      ></script>
+      <script src="index.js"></script>
+    </div>
+  </body>
+</html>

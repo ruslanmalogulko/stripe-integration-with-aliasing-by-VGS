@@ -4,10 +4,8 @@
   "description": "This is a test integration with Stripe using security tools from VGS",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "build": "netlify-lambda build express --config ./webpack.functions.js",
+    "start": "nodemon server-local.js"
   },
   "author": "Ruslan Malogulko",
   "license": "ISC",
@@ -15,7 +13,14 @@
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",
+    "encoding": "^0.1.12",
     "express": "^4.17.1",
+    "https-proxy-agent": "^5.0.0",
+    "netlify-lambda": "^1.6.3",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8",
+    "serverless-http": "^2.5.0",
     "stripe": "^8.64.0"
   },
   "devDependencies": {
