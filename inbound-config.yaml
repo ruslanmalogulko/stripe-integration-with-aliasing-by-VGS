@@ -1,0 +1,50 @@
+data:
+  - attributes:
+      created_at: '2020-06-24T11:47:28'
+      destination_override_endpoint: 'https://peaceful-pike-70cb36.netlify.app'
+      entries:
+        - classifiers: {}
+          config:
+            condition: AND
+            rules:
+              - condition: null
+                expression:
+                  field: PathInfo
+                  operator: equals
+                  type: string
+                  values:
+                    - /.netlify/functions/server/send-data
+              - condition: null
+                expression:
+                  field: ContentType
+                  operator: equals
+                  type: string
+                  values:
+                    - application/json
+          id: fe2948ff-9d92-48a7-a2fe-c9131b260b00
+          id_selector: null
+          operation: REDACT
+          operations: null
+          phase: REQUEST
+          public_token_generator: UUID
+          targets:
+            - body
+          token_manager: PERSISTENT
+          transformer: JSON_PATH
+          transformer_config:
+            - $.number
+          transformer_config_map: null
+          type: null
+      host_endpoint: (.*)\.verygoodproxy\.com
+      id: ef40ff53-9db6-4d84-9114-c4c09ac548ca
+      ordinal: null
+      port: 0
+      protocol: http
+      source_endpoint: '*'
+      tags:
+        name: 'https://peaceful-pike-70cb36.netlify.app-dark-golden-rod-anthropology'
+        source: WizardInbound
+      updated_at: '2020-08-13T17:35:51'
+    id: ef40ff53-9db6-4d84-9114-c4c09ac548ca
+    type: rule_chain
+version: 1
