@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     css: {
       border: '1px solid gray',
       height: 40,
-      width: 400,
       padding: '0 10px',
       background: 'white'
     }
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
       border: '1px solid gray',
       padding: '0 10px',
       height: 40,
-      width: 400,
+      width: 428,
       background: 'white'
     }
   });
@@ -47,14 +46,23 @@ document.addEventListener('DOMContentLoaded', function() {
   let collectResult;
   form.addEventListener('submit', function(event) {
     event.preventDefault();
+    tokenRevealContainer.style.display = 'block';
+    tokenRevealContainer.innerHTML = 'Loading...';
 
     collectForm.submit(
       '/.netlify/functions/server/send-data',
       {},
       (status, response, error) => {
-        console.log(response);
+        if (error) {
+          console.error(error);
+          tokenRevealContainer.innerHTML =
+            'Collect Error:\n================\n\n' +
+            JSON.stringify(response, null, 2);
+
+          return;
+        }
         tokenRevealContainer.innerHTML =
-          'Collect results:\n================\n\n' +
+          'Collect Results:\n================\n\n' +
           JSON.stringify(response, null, 2);
         collectResult = {
           number: response.number,
