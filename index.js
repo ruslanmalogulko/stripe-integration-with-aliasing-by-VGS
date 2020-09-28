@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const buttonToStripe = document.querySelector('#send-to-stripe');
   const tokenRevealContainer = document.querySelector('#token-reveal');
 
-  const collectForm = VGSCollect.create('tnth4ujtd6w', 'sandbox', state => {});
+  /* eslint-disable-next-line no-undef */
+  const collectForm = VGSCollect.create('tnth4ujtd6w', 'sandbox', () => {});
   collectForm.field('#number', {
     type: 'card-number',
     name: 'number',
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       background: 'white'
     }
   });
+
   collectForm.field('#cvc', {
     type: 'card-security-code',
     name: 'cvc',
@@ -51,8 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     collectForm.submit(
       '/.netlify/functions/server/send-data',
       {},
-      (status, response, error) => {
-        console.log(response);
+      (status, response) => {
         tokenRevealContainer.innerHTML =
           'Collect results:\n================\n\n' +
           JSON.stringify(response, null, 2);

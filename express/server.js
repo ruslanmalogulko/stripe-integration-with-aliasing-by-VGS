@@ -5,8 +5,10 @@ const fetch = require('node-fetch').default;
 const HttpsProxyAgent = require('https-proxy-agent');
 const app = express();
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const router = express.Router();
 
@@ -21,7 +23,10 @@ router.post('/api/stripe', async (req, res) => {
   const urlParams = url.parse(
     `http://${process.env.AUTH}@${process.env.VAULT_ID}.sandbox.verygoodproxy.com:8080`
   );
-  const agent = new HttpsProxyAgent(urlParams);
+  const agent = new HttpsProxyAgent({
+    ...urlParams,
+    ca: [fs.readFileSync(path.join(__dirname, '..', 'cert.pem')).toString()]
+  });
 
   try {
     const result = await fetch('https://api.stripe.com/v1/tokens', {
@@ -42,6 +47,7 @@ router.post('/api/stripe', async (req, res) => {
 });
 
 router.get('/', (req, res) => {
+  console.log('redirect');
   res.redirect('/payment-form');
 });
 
@@ -50,6 +56,8 @@ app.use('/post', (req, res) => {
   console.log(req.data);
   res.redirect('/results');
 });
+
+app.use(express.static('.'));
 
 module.exports = app;
 module.exports.handler = serverless(app);
