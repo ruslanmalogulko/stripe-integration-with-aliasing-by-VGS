@@ -1,0 +1,51 @@
+data:
+  - attributes:
+      created_at: '2020-06-24T13:21:27'
+      destination_override_endpoint: '*'
+      entries:
+        - classifiers: {}
+          config:
+            condition: AND
+            rules:
+              - condition: null
+                expression:
+                  field: PathInfo
+                  operator: equals
+                  type: string
+                  values:
+                    - /v1/tokens
+              - condition: null
+                expression:
+                  field: ContentType
+                  operator: equals
+                  type: string
+                  values:
+                    - application/x-www-form-urlencoded
+          id: 7961387b-75b6-41fa-817b-522c039de5d9
+          id_selector: null
+          operation: ENRICH
+          operations: null
+          phase: REQUEST
+          public_token_generator: UUID
+          targets:
+            - body
+          token_manager: PERSISTENT
+          transformer: FORM_FIELD
+          transformer_config:
+            - 'card[number]'
+          transformer_config_map: null
+          type: null
+      host_endpoint: api\.stripe\.com
+      id: 91305cd3-fa86-4cbb-80b1-b1bb61724fad
+      ordinal: null
+      port: 80
+      protocol: http
+      source_endpoint: '*'
+      tags:
+        integration: stripe--formData
+        name: stripe direct outbound
+        source: IntegrationTemplates
+      updated_at: '2020-08-17T10:31:11'
+    id: 91305cd3-fa86-4cbb-80b1-b1bb61724fad
+    type: rule_chain
+version: 1
